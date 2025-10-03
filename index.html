@@ -3,13 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>loading</title>
-  </head>
-  <body style="font-family: sans-serif; text-align: center; margin-top: 100px;">
-   
-    <p>loading</p>
+    <title>Loading...</title>
     <script>
-      window.location.href='https://www.baidu.com';
+      // 等页面加载完后执行
+      window.onload = function () {
+        // 获取URL中的参数
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+
+        // 定义跳转映射表
+        const map = {
+          baidu: 'https://www.baidu.com',
+          sohu: 'https://www.sohu.com',
+          weibo: 'https://www.weibo.com',
+          // 你可以在这里继续加更多
+        };
+
+        if (code && map[code]) {
+          // 找到对应的跳转地址
+          window.location.href = map[code];
+        } else {
+          // 如果没有匹配的code，就显示提示（可自定义）
+          document.body.innerHTML = `<h1>未找到对应的跳转链接 😅</h1>`;
+        }
+      };
     </script>
+  </head>
+  <body>
+    <p>Loading...</p>
   </body>
 </html>
